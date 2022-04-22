@@ -23,6 +23,7 @@ var BiqugeFetcher = &Biquge{}
 func (Biquge) Search(word string) (*[]model.Search, error) {
 	url := BiqugeSearchUrl + url.PathEscape(word)
 	document, err := goquery.NewDocument(url)
+	//fmt.Println(document)
 	if err != nil {
 		return nil, err
 	}

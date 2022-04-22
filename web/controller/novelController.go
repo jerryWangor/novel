@@ -2,7 +2,6 @@ package controller
 
 import (
 	"github.com/gorilla/mux"
-	"log"
 	"net/http"
 	"novel/core/model"
 	"novel/core/source"
@@ -38,7 +37,6 @@ var UserController = &conf.Controller {
 
 // 关键词检索小说
 func search(writer http.ResponseWriter, req *http.Request) {
-	log.Println("search")
 	vars := mux.Vars(req)
 	q := vars["q"]
 	result, err := source.BiqugeFetcher.Search(q)
@@ -47,7 +45,6 @@ func search(writer http.ResponseWriter, req *http.Request) {
 
 // 获取小说信息
 func getNovel(writer http.ResponseWriter, req *http.Request) {
-	log.Println("getNovel")
 	url := req.URL.Query().Get("url")
 	if strings.Trim(url, "") == "" {
 		writer.Write(util.ToJsonByte(model.Fail("参数不正确")))
@@ -59,7 +56,6 @@ func getNovel(writer http.ResponseWriter, req *http.Request) {
 
 // 获取小说章节信息
 func getChapter(writer http.ResponseWriter, req *http.Request) {
-	log.Println("getChapter")
 	url := req.URL.Query().Get("url")
 	if strings.Trim(url, "") == "" {
 		writer.Write(util.ToJsonByte(model.Fail("参数不正确")))
